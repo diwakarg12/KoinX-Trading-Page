@@ -92,8 +92,6 @@ const Home = () => {
     priceChangePercentage: coin.item.data.price_change_percentage_24h.usd.toFixed(2),
   }))
 
-  console.log('FormattedCoins',formattedCoinsData)
-
   return (
     <div className="h-full py-5 w-full bg-[#eff2f5] font-poppins lg:px-10 overflow-x-hidden">
       <Breadcrumb />

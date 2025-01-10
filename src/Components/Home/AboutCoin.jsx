@@ -13,7 +13,7 @@ const AboutCoin = () => {
         <div className=" mt-2 py-2">
             <h1 className="text-[#0F1629] text-2xl font-semibold">Already Holding Bitcoins?</h1>
             <div className="lg:flex border-b-2 border-[#C9CFDD]/40 pb-4">
-                <div className="mt-4 lg:flex lg:space-x-7 space-y-3">
+                <div className="mt-4 lg:flex lg:space-x-7">
                     <Calculate img={"/calculateImg1.jpg"} text={"Calculate your Profits"} />
                     <Calculate img={"/calculateImg2.jpg"} text={"Calculate your Profits"} />
                 </div>

@@ -2,7 +2,7 @@
 
 const KeyEventCard = ({svg, path, heading, text}) => {
   return (
-    <div className="lg:w-[456px]  bg-[#E8F4FD] rounded-xl overflow-y-hidden">
+    <div className="lg:w-[456px]  bg-[#E8F4FD] lg:h-[210px] rounded-xl overflow-y-hidden my-2">
             <div className="p-4 flex">
               <div className="bg-[#0082FF] w-11 h-11 rounded-full justify-center flex items-center">
                 <svg
