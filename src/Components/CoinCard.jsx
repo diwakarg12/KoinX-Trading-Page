@@ -2,7 +2,7 @@
 
 const CoinCard = ({crypto}) => {
   return (
-    <div className="lg:w-[300px] rounded-2xl p-5 border-2 my-2 mr-2">
+    <div className="lg:w-[300px] rounded-2xl p-5 border-2 my-2 mr-2 font-poppins">
       <div className="flex items-center space-x-2">
         <img
           src={crypto.large}
@@ -28,7 +28,6 @@ const CoinCard = ({crypto}) => {
         {crypto.data.price}
       </div>
       {/* Display the chart image */}
-      
       <img
         src={
           crypto && crypto.sparkline

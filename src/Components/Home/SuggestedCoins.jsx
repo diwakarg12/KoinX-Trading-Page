@@ -3,11 +3,11 @@ import CoinCard from "../CoinCard"
 
 const SuggestedCoins = ({text, cryptos}) => {
   return (
-    <>
+    <div className="py-4">
         <div className="text-[#202020] text-2xl font-semibold">
           {text}
         </div>
-        <div className="mt-4 flex justify-between overflow-x-scroll overflow-auto  ">
+        <div className="my-4 flex justify-between overflow-x-scroll overflow-auto  ">
           {
             text === "You may like" ? 
             (
@@ -22,7 +22,7 @@ const SuggestedCoins = ({text, cryptos}) => {
             )
           }
         </div>
-    </>
+    </div>
   )
 }
 
