@@ -66,7 +66,7 @@ function TradingView({tradingViewData, container}) {
           <div>1H</div>
           <div>24H</div>
           <div className="text-[#0141CF] bg-[#E2ECFE] rounded-3xl px-3 py-1">
-            7D
+            5D
           </div>
           <div>1M</div>
           <div>3M</div>

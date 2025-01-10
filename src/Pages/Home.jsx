@@ -10,6 +10,8 @@ import CoinEstimateAnalysis from "../Components/Home/CoinEstimateAnalysis";
 import Tokenomics from "../Components/Home/Tokenomics";
 import KoinXTeams from "../Components/Home/KoinX-Teams";
 import AboutCoin from "../Components/Home/AboutCoin";
+import TrendingCoins from "../Components/Home/TrendingCoins";
+import Advertisement from "../Components/Home/Advertisement";
 
 const Home = () => {
   const [cryptos, setCryptos] = useState([]);
@@ -17,14 +19,18 @@ const Home = () => {
   const container = useRef(null);
 
   useEffect(()=>{
-    const interval = setInterval(
-      axios.get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=inr%2Cusd&include_24hr_change=true")
-      .then((response)=>{
-        setTradingViewData(response.data.bitcoin)
+    const fetchCryptoData = () => {
+    axios
+      .get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=inr%2Cusd&include_24hr_change=true")
+      .then((response) => {
+        setTradingViewData(response.data.bitcoin);
       })
-      .catch((err)=>{
-        console.log("Error fetching Crypto Coins:", err)
-      }), 1000)
+      .catch((err) => {
+        console.log("Error fetching Crypto Coins:", err);
+      });
+  };
+
+    const interval = setInterval(fetchCryptoData, 10000)
       return () => clearInterval(interval);
   }, [])
 
@@ -38,7 +44,8 @@ const Home = () => {
     script.type = "text/javascript";
     script.async = true;
 
-    const scriptContent = JSON.stringify({
+    // Correct configuration for Bitcoin
+    const config = {
       autosize: true,
       symbol: "CRYPTO:BTCUSD",
       timezone: "Etc/UTC",
@@ -52,15 +59,18 @@ const Home = () => {
       save_image: false,
       calendar: false,
       hide_volume: true,
-      support_host: "https://www.tradingview.com",
-    });
+    };
 
-    script.innerHTML = scriptContent;
+    // Instead of setting innerHTML, use dataset for widget config
+    script.innerHTML = JSON.stringify(config);
+
+    // Append the script to the container
     container.current.appendChild(script);
 
+    // Cleanup on unmount
     return () => {
-      if (container.current && script.parentNode) {
-        container.current.removeChild(script);
+      if (container.current) {
+        container.current.innerHTML = ""; // Clear the container
       }
     };
   }, []);
@@ -75,22 +85,32 @@ const Home = () => {
       });
   }, []);
 
+  const formattedCoinsData = cryptos.slice(5,8).map(coin=>({
+    symbol: coin.item.symbol.toUpperCase(),
+    name: coin.item.name,
+    img: coin.item.large,
+    priceChangePercentage: coin.item.data.price_change_percentage_24h.usd.toFixed(2),
+  }))
+
+  console.log('FormattedCoins',formattedCoinsData)
+
   return (
     <div className="h-full py-5 w-screen bg-[#eff2f5] font-poppins lg:px-10 md:px-6 px-2">
       <Breadcrumb />
       <div className="w-screen lg:flex">
         <div className="lg:w-8/12">
-        <TradingView tradingViewData={tradingViewData} container={container} />
-        <AboutCoinToggle />
-        <CoinPerformance />
-        <CoinMarketSentiment />
-        <CoinEstimateAnalysis />
-        <AboutCoin />
-        <Tokenomics />
-        <KoinXTeams />
+          <TradingView tradingViewData={tradingViewData} container={container} />
+          <AboutCoinToggle />
+          <CoinPerformance />
+          <CoinMarketSentiment />
+          <CoinEstimateAnalysis />
+          <AboutCoin />
+          <Tokenomics />
+          <KoinXTeams />
         </div>
         <div className="lg:w-4/12 lg:mr-14 mx-4">
-
+          <Advertisement />
+          <TrendingCoins cryptos={formattedCoinsData} />
         </div>
       </div>
       <SuggestedCoins text="You may like" cryptos={cryptos} />

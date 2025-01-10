@@ -12,12 +12,12 @@ const SuggestedCoins = ({text, cryptos}) => {
             text === "You may like" ? 
             (
               cryptos.slice(0, 5).map((crypto) => (
-                <CoinCard key={crypto.item.id} crypto={crypto.item} />
+                <CoinCard key={crypto.item.id} crypto={crypto.item} flag={true} />
               ))
             ) : 
             (
               cryptos.slice(5, 10).map((crypto) => (
-                <CoinCard key={crypto.item.id} crypto={crypto.item} />
+                <CoinCard key={crypto.item.id} crypto={crypto.item} flag={true} />
               ))
             )
           }
