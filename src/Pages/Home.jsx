@@ -95,7 +95,7 @@ const Home = () => {
   console.log('FormattedCoins',formattedCoinsData)
 
   return (
-    <div className="h-full py-5 w-screen bg-[#eff2f5] font-poppins lg:px-10 md:px-6 px-2">
+    <div className="h-full py-5 w-full bg-[#eff2f5] font-poppins lg:px-10 overflow-x-hidden">
       <Breadcrumb />
       <div className="w-screen lg:flex">
         <div className="lg:w-8/12">

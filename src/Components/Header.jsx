@@ -11,7 +11,7 @@ function Header() {
   };
 
   return (
-    <div className="lg:h-20 h-16 flex font-raleway items-center justify-between shadow-[#1026490F]/10  shadow-md bg-[#FFFFFF]  w-screen">
+    <div className="lg:h-20 h-16 flex font-raleway items-center justify-between shadow-[#1026490F]/10  shadow-md bg-[#FFFFFF] w-full">
       <Link to={"/"}>
         <img src={Logo} alt="Logo" className="w-24 h-6 lg:ml-14 ml-4"></img>
       </Link>
