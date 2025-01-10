@@ -6,6 +6,10 @@ import TradingView from "../Components/Home/TradingView";
 import AboutCoinToggle from "../Components/Home/AboutCoinToggle";
 import CoinPerformance from "../Components/Home/CoinPerformance";
 import CoinMarketSentiment from "../Components/Home/CoinMarketSentiment";
+import CoinEstimateAnalysis from "../Components/Home/CoinEstimateAnalysis";
+import Tokenomics from "../Components/Home/Tokenomics";
+import KoinXTeams from "../Components/Home/KoinX-Teams";
+import AboutCoin from "../Components/Home/AboutCoin";
 
 const Home = () => {
   const [cryptos, setCryptos] = useState([]);
@@ -80,6 +84,10 @@ const Home = () => {
         <AboutCoinToggle />
         <CoinPerformance />
         <CoinMarketSentiment />
+        <CoinEstimateAnalysis />
+        <AboutCoin />
+        <Tokenomics />
+        <KoinXTeams />
         </div>
         <div className="lg:w-4/12 lg:mr-14 mx-4">
 
