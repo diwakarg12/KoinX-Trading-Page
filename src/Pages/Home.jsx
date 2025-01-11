@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Breadcrumb from "../Components/Home/Breadcrumb"
 import SuggestedCoins from "../Components/Home/SuggestedCoins";
@@ -16,7 +16,9 @@ import Advertisement from "../Components/Home/Advertisement";
 const Home = () => {
   const [cryptos, setCryptos] = useState([]);
   const [tradingViewData, setTradingViewData] = useState([]);
-  const container = useRef(null);
+
+  console.log('TradingViewData',tradingViewData)
+  console.log('CryptoData', cryptos)
 
   useEffect(()=>{
     const fetchCryptoData = () => {
@@ -34,46 +36,45 @@ const Home = () => {
       return () => clearInterval(interval);
   }, [])
 
+  // useEffect(() => {
+  //   if (!container.current) return;
 
-  useEffect(() => {
-    if (!container.current) return;
+  //   const script = document.createElement("script");
+  //   script.src =
+  //     "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+  //   script.type = "text/javascript";
+  //   script.async = true;
 
-    const script = document.createElement("script");
-    script.src =
-      "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
-    script.type = "text/javascript";
-    script.async = true;
+  //   // Correct configuration for Bitcoin
+  //   const config = {
+  //     autosize: true,
+  //     symbol: "CRYPTO:BTCUSD",
+  //     timezone: "Etc/UTC",
+  //     theme: "light",
+  //     style: "2",
+  //     locale: "en",
+  //     enable_publishing: false,
+  //     hide_top_toolbar: true,
+  //     hide_legend: true,
+  //     range: "5D",
+  //     save_image: false,
+  //     calendar: false,
+  //     hide_volume: true,
+  //   };
 
-    // Correct configuration for Bitcoin
-    const config = {
-      autosize: true,
-      symbol: "CRYPTO:BTCUSD",
-      timezone: "Etc/UTC",
-      theme: "light",
-      style: "2",
-      locale: "en",
-      enable_publishing: false,
-      hide_top_toolbar: true,
-      hide_legend: true,
-      range: "5D",
-      save_image: false,
-      calendar: false,
-      hide_volume: true,
-    };
+  //   // Instead of setting innerHTML, use dataset for widget config
+  //   script.innerHTML = JSON.stringify(config);
 
-    // Instead of setting innerHTML, use dataset for widget config
-    script.innerHTML = JSON.stringify(config);
+  //   // Append the script to the container
+  //   container.current.appendChild(script);
 
-    // Append the script to the container
-    container.current.appendChild(script);
-
-    // Cleanup on unmount
-    return () => {
-      if (container.current) {
-        container.current.innerHTML = ""; // Clear the container
-      }
-    };
-  }, []);
+  //   // Cleanup on unmount
+  //   return () => {
+  //     if (container.current) {
+  //       container.current.innerHTML = ""; // Clear the container
+  //     }
+  //   };
+  // }, []);
   useEffect(() => {
     axios
       .get("https://api.coingecko.com/api/v3/search/trending")
@@ -97,7 +98,7 @@ const Home = () => {
       <Breadcrumb />
       <div className="w-screen lg:flex">
         <div className="lg:w-8/12">
-          <TradingView tradingViewData={tradingViewData} container={container} />
+          <TradingView tradingViewData={tradingViewData} />
           <AboutCoinToggle />
           <CoinPerformance />
           <CoinMarketSentiment />

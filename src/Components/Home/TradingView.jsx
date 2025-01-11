@@ -2,7 +2,7 @@
 import TradingImg from "/coin.png";
 import TradingViewGraph from "./TradingViewGraph";
 
-function TradingView({tradingViewData, container}) {
+function TradingView({tradingViewData}) {
 
   return (
     <div className="bg-white h-max rounded-lg my-5 p-6 font-poppins">
@@ -76,7 +76,7 @@ function TradingView({tradingViewData, container}) {
         </div>
       </div>
       <div className="lg:h-[420px] h-[300px]">
-       <TradingViewGraph container={container} />
+       <TradingViewGraph symbol={"BTC"} style={"w-full h-full"} />
       </div>
     </div>
   );
